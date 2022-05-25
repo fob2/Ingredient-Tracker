@@ -1,4 +1,21 @@
 {% extends "ingredients/base.html" %}
 {% block content %}
-    <h1>Menu Items</h1>
+    <table>
+      <tr>
+        <th>Menu Item</th>
+        <th>Price(£)</th>
+      </tr>
+
+      {% for instance in menu %}
+        <tr>
+          <td>
+            {{ instance.fields.menu_item }}
+          </td>
+          <td>
+            {{ instance.fields.price }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    <a class="btn btn-primary btn-sm btn-block" href="">Log Purchase</a>
 {% endblock content %}

@@ -1,34 +1,35 @@
 {% extends "ingredients/base.html" %}
 {% block content %}
-    <table>
-      <tr>
-        <th>Ingredients</th>
-        <th>Price</th>
-        <th>Stock</th>
-      </tr>
-
-      {% for instance in ingredients_table %}
+    <div>
+      <table>
         <tr>
-          <td>
-            {{ instance.fields.ingredients }}
-          </td>
-          <td>
-            {{ instance.fields.price }}
-          </td>
-          <td>
-            {{ instance.fields.stock }}
-          </td>
+          <th>Ingredients</th>
+          <th>Price(£)</th>
+          <th>Remaining Stock(kg)</th>
         </tr>
-      {% endfor %}
-    </table>
-    <!-- <div id="button" class="row">
-        <div class="col-md-15">
-          <div class="card card-body">
-            <a class="btn btn-primary  btn-sm btn-block" href="">Add Ingredient</a>
-          </div>
-        </div>
-        {% for ingredients in all_ingredients %}
-            <li>{{ ingredients }}</li>
+
+        {% for instance in ingredients_table %}
+          <tr>
+            <td>
+              {{ instance.fields.ingredients }}
+            </td>
+            <td>
+              {{ instance.fields.price }}
+            </td>
+            <td>
+              {{ instance.fields.stock }}
+            </td>
+           <!--  <td>
+              
+            </td> -->
+          </tr>
         {% endfor %}
-    </div> -->
+      </table>
+      <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-add_ingredient' %}">Add Ingredient</a>
+      <br/>
+      <!-- {% for instance in ingredients_table %}
+      <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-update_ingredient' ingredient.id %}">{{ ingredient }}</a>
+      {% endfor %} -->
+    </div>
+
 {% endblock content %}

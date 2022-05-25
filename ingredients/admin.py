@@ -3,4 +3,5 @@ from .models import *
 
 admin.site.register(Ingredients)
 admin.site.register(Menu_Items)
-admin.site.register(Purchase_History)
+admin.site.register(Stock_Required)
+""" admin.site.register(Purchase_History) """
