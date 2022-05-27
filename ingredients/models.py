@@ -15,7 +15,6 @@ class Menu_Items(models.Model):
     menu_item = models.CharField(max_length=30, null=TRUE)
     ingredients = models.ManyToManyField(Ingredients, through="Stock_Required")
     price = models.FloatField(null=True)
-    #date_purchased = models.DateTimeField(auto_now_add=True, null=True)
     
     def __str__(self):
         return self.menu_item
@@ -28,13 +27,12 @@ class Stock_Required(models.Model):
     class Meta:
         unique_together = [[ "menu_items", "ingredients"]]
 
-""" class Purchase_History(models.Model):
-    menu_item = models.ForeignKey(Menu_Items, null=True, on_delete=models.SET_NULL)
-    price = models.ForeignKey(Menu_Items, null=True, on_delete=models.SET_NULL, related_name="meal_price")
+class Purchase_History(models.Model):
+    menu_item = models.ForeignKey(Menu_Items, null=True, on_delete=models.PROTECT)
+    price = models.ForeignKey(Menu_Items, null=True, on_delete=models.PROTECT, related_name="meal_price")
     date_purchased = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return f"{self.menu_item} {self.date_purchased}" """
+
 
 
     

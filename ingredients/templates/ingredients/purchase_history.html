@@ -1,4 +1,25 @@
 {% extends "ingredients/base.html" %}
 {% block content %}
-    <h1>Purchase History</h1>
+    <div>
+      <table>
+        <tr>
+          <th>Item Ordered</th>
+          <th>Price(£)</th>
+          <th>Date Ordered</th>
+        </tr>
+
+        {% for instance in menu %}
+          <tr>
+            <td>
+              {{ instance.menu_item }}
+            </td>
+            <td>
+              {{ instance.price }}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      <br/>
+    </div>
+
 {% endblock content %}

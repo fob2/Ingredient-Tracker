@@ -8,28 +8,28 @@
           <th>Remaining Stock(kg)</th>
         </tr>
 
-        {% for instance in ingredients_table %}
+        {% for ingredient in ingredients %}
           <tr>
             <td>
-              {{ instance.fields.ingredients }}
+              {{ ingredient.ingredients }}
             </td>
             <td>
-              {{ instance.fields.price }}
+              {{ ingredient.price }}
             </td>
             <td>
-              {{ instance.fields.stock }}
+              {{ ingredient.stock }}
             </td>
-           <!--  <td>
-              
-            </td> -->
+            <td>
+              <a class="btn btn-sm btn-info" href="{% url 'ingredients-update_ingredient' ingredient.id %}">Update</a>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-danger" href="{% url 'ingredients-delete_ingredient' ingredient.id %}">Delete</a>
+            </td>
           </tr>
         {% endfor %}
       </table>
       <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-add_ingredient' %}">Add Ingredient</a>
       <br/>
-      <!-- {% for instance in ingredients_table %}
-      <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-update_ingredient' ingredient.id %}">{{ ingredient }}</a>
-      {% endfor %} -->
     </div>
 
 {% endblock content %}
