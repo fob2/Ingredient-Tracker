@@ -1,19 +1,19 @@
 {% extends "ingredients/base.html" %}
 {% block content %}
-    <center>
-    <h1>Update Ingredient</h1>
-    <br/><br/>
+<div>
+    <h2>Update Ingredient</h2>
     {% if submitted %}
         Ingredient has been updated successfully.
     {% else %}
-
-    
+</div>
+<br></br>
+<div>    
     <form action="" method="POST">
         {% csrf_token %}
-        {{form}}
+        {{form.as_p}}
         
-        <input type="submit" name="Submit">
+        <input class="button" type="submit" name="Submit">
     </form>
-    </center>
     {% endif %}
+</div>
 {% endblock content %}

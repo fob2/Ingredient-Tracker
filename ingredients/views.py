@@ -1,9 +1,10 @@
 from django.forms import ModelForm
 from django.shortcuts import redirect, render
 from .models import *
+from django.views.generic import TemplateView, ListView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core import serializers
-from .forms import *
+from .forms import Ingredients_Form, Menu_Form, Purchase_Form
 
 def home(request):
     ingredients = Ingredients.objects.all()
@@ -22,26 +23,36 @@ def menu_items(request):
     return render(request, "ingredients/menu_items.html", context)
 
 def purchase_history(request):
-    menu = Menu_Items.objects.all()
+    menu = Purchase_History.objects.all()
+    price = Menu_Items.objects.all()
 
     context = {
-        "menu_item":menu
+        "menu":menu, "price":price
     }
     
     return render(request, "ingredients/purchase_history.html", context)
 
-def purchase_history_log(request, lpk):
+class purchase_history_log(TemplateView):
+    template_name = "ingredients/purchase_history_log.html"
 
-    menu = Menu_Items.objects.get(id=lpk)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["menu_items"] = Menu_Items.objects.all()
+        return context
 
-    if request.method == "POST":
-        return redirect("/purchase_history/")
+    def post(self, request):
+        menu_item_id = request.POST["menu_item"]
+        menu_item = Menu_Items.objects.get(pk=menu_item_id)
+        requirements = menu_item.stock_required_set
+        purchase = Purchase_History(menu_item=menu_item)
 
-    context = {
-        "menu_item":menu
-    }
+        for requirement in requirements.all():
+            required_ingredient = requirement.ingredients
+            required_ingredient.stock -= requirement.ingredients_quantity
+            required_ingredient.save()
 
-    return render(request, "ingredients/purchase_history_log.html", context)
+        purchase.save()
+        return redirect("/purchase_history")
 
 def update_ingredient(request, pk):
     
@@ -126,7 +137,6 @@ def update_menu_item(request, mpk):
 """ def log_purchase(request, lpk):
 
     item = Menu_Items.objects.get(id=lpk)
-    system = request.POST.get("{{ item }}", None)
     form = Purchase_Form(request.POST, instance=item)
 
     if request.method == "POST":

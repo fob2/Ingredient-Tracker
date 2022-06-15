@@ -1,19 +1,20 @@
 {% extends "ingredients/base.html" %}
 {% block content %}
-    <center>
-    <h1>Add Menu Item</h1>
-    <br/><br/>
+<div>
+    <h2>Add Menu Item</h2>
     {% if submitted %}
         Menu item has been added successfully.
     {% else %}
-
-    
+</div>
+<br></br>
+<p>Tip: Hold Ctrl to select multiple ingredients.</p>
+ <div>   
     <form action="" method="POST">
         {% csrf_token %}
-        {{form}}
+        {{form.as_p}}
         
-        <input type="submit" name="Submit">
+        <input class="button" type="submit" name="Submit">
     </form>
-    </center>
     {% endif %}
+</div>
 {% endblock content %}

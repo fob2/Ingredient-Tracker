@@ -1,35 +1,38 @@
 {% extends "ingredients/base.html" %}
 {% block content %}
-    <div>
-      <table>
-        <tr>
-          <th>Ingredients</th>
-          <th>Price(£)</th>
-          <th>Remaining Stock(kg)</th>
-        </tr>
-
-        {% for ingredient in ingredients %}
+<div class="container">
+  <div class="d-lg-flex">
+      <div>
+        <table cellpadding="10">
           <tr>
-            <td>
-              {{ ingredient.ingredients }}
-            </td>
-            <td>
-              {{ ingredient.price }}
-            </td>
-            <td>
-              {{ ingredient.stock }}
-            </td>
-            <td>
-              <a class="btn btn-sm btn-info" href="{% url 'ingredients-update_ingredient' ingredient.id %}">Update</a>
-            </td>
-            <td>
-              <a class="btn btn-sm btn-danger" href="{% url 'ingredients-delete_ingredient' ingredient.id %}">Delete</a>
-            </td>
+            <th>Ingredients</th>
+            <th>Price(£)</th>
+            <th>Remaining Stock(kg)</th>
           </tr>
-        {% endfor %}
-      </table>
-      <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-add_ingredient' %}">Add Ingredient</a>
-      <br/>
-    </div>
 
+          {% for ingredient in ingredients %}
+            <tr>
+              <td>
+                {{ ingredient.ingredients }}
+              </td>
+              <td>
+                {{ ingredient.price }}
+              </td>
+              <td>
+                {{ ingredient.stock }}
+              </td>
+              <td>
+                <a class="btn btn-sm btn-info" href="{% url 'ingredients-update_ingredient' ingredient.id %}">Update</a>
+              </td>
+              <td>
+                <a class="btn btn-sm btn-danger" href="{% url 'ingredients-delete_ingredient' ingredient.id %}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+          <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-add_ingredient' %}">Add Ingredient</a>
+        <br/>
+      </div>
+  </div>
+</div>
 {% endblock content %}

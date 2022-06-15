@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%(l3(z(uo(uywzr+sd=i+*rco-j01l_++tjsd89v=j1b%+5h2j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fob-ingredients-tracker.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

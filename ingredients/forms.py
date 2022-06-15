@@ -12,3 +12,8 @@ class Menu_Form(ModelForm):
         model = Menu_Items
         fields = "__all__"
 
+class Purchase_Form(ModelForm):
+    class Meta:
+        model = Purchase_History
+        fields = ("menu_item",)
+

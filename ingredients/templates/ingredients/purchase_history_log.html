@@ -1,14 +1,22 @@
 {% extends "ingredients/base.html" %}
+{% load static %} 
 {% block content %}
-
-<p>Log purchase for "{{ menu }}"?</p>
-
-<form method="POST">
-
+    <h2>Log Purchase</h2>
+    <form method="post">
+    <br></br>
+    <div>
     {% csrf_token %}
-    <a href="{% url 'ingredients-menu_items' %}">Cancel</a>
-
-    <input type="submit" name="Submit">
-</form>
-
-{% endblock content %}
+    {{ form.as_p }}
+    <p>
+        <label for="menu_item">Menu item:</label>
+        <select name="menu_item" id="menu_item" required>
+            <option value selected>-----</option>
+        {% for menu_item in menu_items %}
+            <option value={{ menu_item.id }}>{{ menu_item.menu_item}}</option>
+        {% endfor %}
+        </select>
+    </p>
+    <input class="button" type="submit" value="Submit"/>
+    </div>
+    </form>
+{% endblock %}

@@ -1,33 +1,34 @@
 {% extends "ingredients/base.html" %}
 {% block content %}
-    <table>
-      <tr>
-        <th>Menu Item</th>
-        <th>Price(£)</th>
-      </tr>
-
-      {% for instance in menu %}
+<div class="container">
+  <div class="d-sm-flex">
+    <div>
+      <table cellpadding="10">
         <tr>
-          <td>
-            {{ instance.menu_item }}
-          </td>
-          <td>
-            {{ instance.price }}
-          </td>
-          <td>
-            <td>
-              <a class="btn btn-sm btn-info" href="{% url 'ingredients-purchase_history_log' instance.id %}">Log Purchase</a>
-            </td>
-          </td>
-          <td>
-            <a class="btn btn-sm btn-info" href="{% url 'ingredients-update_menu_item' instance.id %}">Update</a>
-          </td>
-          <td>
-            <a class="btn btn-sm btn-danger" href="{% url 'ingredients-delete_menu_item' instance.id %}">Delete</a>
-          </td>
+          <th>Menu Item</th>
+          <th>Price(£)</th>
         </tr>
-      {% endfor %}
-    </table>
-    <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-add_menu_item' %}">Add Menu Item</a>
-    
+
+        {% for instance in menu %}
+          <tr>
+            <td>
+              {{ instance.menu_item }}
+            </td>
+            <td>
+              {{ instance.price }}
+            </td>
+            <td>
+              <a class="btn btn-sm btn-info" href="{% url 'ingredients-update_menu_item' instance.id %}">Update</a>
+            </td>
+            <td>
+              <a class="btn btn-sm btn-danger" href="{% url 'ingredients-delete_menu_item' instance.id %}">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-add_menu_item' %}">Add Menu Item</a>
+      <a class="btn btn-primary btn-sm btn-block" href="{% url 'ingredients-purchase_history_log' %}">Log Purchase</a>
+    </div>
+  </div>
+</div>  
 {% endblock content %}

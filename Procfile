@@ -1,0 +1,1 @@
+web: gunicorn ingredient_tracker.wsgi --log-file -
