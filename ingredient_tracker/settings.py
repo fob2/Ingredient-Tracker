@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%(l3(z(uo(uywzr+sd=i+*rco-j01l_++tjsd89v=j1b%+5h2j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://fob-ingredients-tracker.herokuapp.com']
+ALLOWED_HOSTS = ['fob-ingredients-tracker.herokuapp.com']
 
 
 # Application definition
